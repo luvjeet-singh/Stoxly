@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* navbar */
+.nav-link {
+  margin-left: 30px;
+}
+
+.navbar {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Education - home */
+.Education {
+  width: 70%;
+  position: relative;
+  top: -3rem;
+}
+
+/* Footer */
+.footer-links a {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 5px;
+  color: #36454f !important;
+}
+
+.footer-logo-p {
+  margin-top: 1rem;
+  padding-right: 9px;
+  font-size: 0.85rem;
+  color: #36454f !important;
+}
+
+/* About */
+.about-hero {
+  line-height: 1.8;
+  font-size: 1.08rem;
+}
+
+.about-team-img {
+  border-radius: 100%;
+  width: 65%;
+  margin-left: 5rem;
+}
+
+.about-team-h4 {
+  margin-left: 5rem;
+}
+
+.anchor {
+  text-decoration: none;
+}
+
+/* Products */
+.universe-text {
+  font-size: 0.8rem;
+}
+
+/* Pricing */
+.brokerage-h5 {
+  margin-right: 10rem !important;
+}
+
+/* Support */
+.supportHero {
+  background-color: #387ed1;
+}
+
+.custom-underline {
+  display: inline-block;
+  border-bottom: 1px solid white;
+  padding-bottom: 4px;
+  text-decoration: none;
+  color: white;
+  margin-right: 1.5rem;
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.hero-underline2 {
+  color: white;
+  font-size: 1.05rem;
+}
+
+.hero-input {
+  height: 3.5rem;
+  border-radius: 0;
+  border: none;
+}
+
+.hero-icon {
+  color: gray;
+  height: 3.5rem;
+}
+
+.track-a {
+  text-align: right !important;
+  margin-bottom: 6rem;
+}
+
+.hero-featured {
+  margin-left: 2rem;
+}
+
+/* Signup */
+.signupH1 {
+  font-size: 3rem;
+}
