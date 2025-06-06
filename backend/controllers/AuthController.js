@@ -2,14 +2,16 @@ const User = require("../model/UsersModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const cookieOptions = {
   httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  domain: ".onrender.com", // allows sharing between subdomains
+  secure: isProduction, // only true in production (Render)
+  sameSite: isProduction ? "None" : "Lax", // "None" for cross-origin, "Lax" for localhost
+  domain: isProduction ? ".onrender.com" : undefined, // required for Render subdomain sharing
 };
 
-module.exports.Signup = async (req, res, next) => {
+module.exports.Signup = async (req, res) => {
   try {
     const { email, password, username, createdAt } = req.body;
     const existingUser = await User.findOne({ email });
@@ -36,15 +38,13 @@ module.exports.Signup = async (req, res, next) => {
         email: user.email,
       },
     });
-
-    next();
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Signup failed" });
   }
 };
 
-module.exports.Login = async (req, res, next) => {
+module.exports.Login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -78,23 +78,15 @@ module.exports.Login = async (req, res, next) => {
         email: user.email,
       },
     });
-
-    next();
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Login failed" });
   }
 };
 
-module.exports.Logout = async (req, res, next) => {
+module.exports.Logout = async (req, res) => {
   try {
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      domain: ".onrender.com",
-    });
-
+    res.clearCookie("token", cookieOptions); // Use the same cookie options to properly clear it
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: "Logout failed" });
