@@ -6,9 +6,9 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const cookieOptions = {
   httpOnly: true,
-  secure: isProduction, // only true in production (Render)
-  sameSite: isProduction ? "None" : "Lax", // "None" for cross-origin, "Lax" for localhost
-  domain: isProduction ? ".onrender.com" : undefined, // required for Render subdomain sharing
+  secure: isProduction, // must be true for SameSite=None
+  sameSite: isProduction ? "None" : "Lax",
+  domain: isProduction ? ".onrender.com" : "localhost",
 };
 
 module.exports.Signup = async (req, res) => {
@@ -86,7 +86,7 @@ module.exports.Login = async (req, res) => {
 
 module.exports.Logout = async (req, res) => {
   try {
-    res.clearCookie("token", cookieOptions); // Use the same cookie options to properly clear it
+    res.clearCookie("token", cookieOptions);
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: "Logout failed" });
