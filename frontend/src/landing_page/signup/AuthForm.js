@@ -13,12 +13,23 @@ const AuthForm = () => {
   const [cookies, removeCookie] = useCookies([]);
   const isSignup = mode === "signup";
 
+  const backendURL =
+    process.env.NODE_ENV === "production"
+      ? "https://stoxly-backend.onrender.com"
+      : "http://localhost:3002";
+
+  const dashboardURL =
+    process.env.NODE_ENV === "production"
+      ? "https://stoxly-dashboard.onrender.com"
+      : "http://localhost:3000";
+
   useEffect(() => {
     const verifyToken = async () => {
       try {
         if (!cookies.token) return;
+
         const { data } = await axios.post(
-          "http://localhost:3002/",
+          `${backendURL}/`,
           {},
           { withCredentials: true }
         );
@@ -26,7 +37,7 @@ const AuthForm = () => {
         const { status, user } = data;
 
         if (status) {
-          navigate("/");
+          navigate("/"); // stays in dashboard
         } else {
           removeCookie("token");
         }
@@ -36,7 +47,7 @@ const AuthForm = () => {
     };
 
     verifyToken();
-  }, [cookies, navigate, removeCookie]);
+  }, [cookies, navigate, removeCookie, backendURL]);
 
   const formik = useFormik({
     initialValues: {
@@ -59,9 +70,7 @@ const AuthForm = () => {
     }),
     onSubmit: async (values, { resetForm, setFieldError }) => {
       try {
-        const url = isSignup
-          ? "http://localhost:3002/signup"
-          : "http://localhost:3002/login";
+        const url = `${backendURL}/${isSignup ? "signup" : "login"}`;
 
         const payload = isSignup
           ? values
@@ -75,7 +84,7 @@ const AuthForm = () => {
 
         if (success) {
           resetForm();
-          window.location.href = "http://localhost:3000";
+          window.location.href = dashboardURL;
         } else {
           if (message === "User already exists") {
             setFieldError("email", message);
