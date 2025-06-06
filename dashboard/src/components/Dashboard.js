@@ -14,22 +14,34 @@ const Dashboard = () => {
   const { setUser } = useContext(GeneralContext);
 
   useEffect(() => {
+    const backendURL =
+      process.env.NODE_ENV === "production"
+        ? "https://stoxly-backend.onrender.com"
+        : "http://localhost:3002";
+
+    const redirectURL =
+      process.env.NODE_ENV === "production"
+        ? "https://stoxly.onrender.com"
+        : "http://localhost:3001";
+
     const verifyToken = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:3002/",
+          `${backendURL}/`,
           {},
           { withCredentials: true }
         );
+
         if (!res.data.status) {
-          window.location.href = "http://localhost:3001";
+          window.location.href = redirectURL;
         } else {
-          setUser(res.data.user); // <-- set the user here
+          setUser(res.data.user);
         }
       } catch (err) {
-        window.location.href = "http://localhost:3001";
+        window.location.href = redirectURL;
       }
     };
+
     verifyToken();
   }, [setUser]);
 

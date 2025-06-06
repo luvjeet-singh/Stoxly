@@ -6,7 +6,11 @@ const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allOrders").then((res) => {
+    const backendURL =
+      process.env.NODE_ENV === "production"
+        ? "https://stoxly-backend.onrender.com"
+        : "http://localhost:3002";
+    axios.get(`${backendURL}/allOrders`).then((res) => {
       setAllOrders(res.data);
     });
   }, []);

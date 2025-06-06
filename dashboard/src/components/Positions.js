@@ -6,7 +6,11 @@ const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allPositions").then((res) => {
+    const backendURL =
+      process.env.NODE_ENV === "production"
+        ? "https://stoxly-backend.onrender.com"
+        : "http://localhost:3002";
+    axios.get(`${backendURL}/allPositions`).then((res) => {
       console.log(res.data);
       setAllPositions(res.data);
     });
