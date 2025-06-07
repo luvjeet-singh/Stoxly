@@ -12,7 +12,8 @@ module.exports.Signup = async (req, res, next) => {
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      httpOnly: true,
+      withCredentials: true,
+      httpOnly: false,
     });
     res.status(201).json({
       message: `Hi ${user.username}, you’re now logged in`,
@@ -41,7 +42,8 @@ module.exports.Login = async (req, res, next) => {
     }
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      httpOnly: true,
+      withCredentials: true,
+      httpOnly: false,
     });
     res.status(201).json({
       message: `Welcome back, ${user.username}`,
