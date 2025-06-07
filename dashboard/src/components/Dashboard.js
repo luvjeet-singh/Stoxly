@@ -27,7 +27,7 @@ const Dashboard = () => {
     const verifyToken = async () => {
       try {
         const res = await axios.post(
-          `${backendURL}/`,
+          `${backendURL}/verify`,
           {},
           { withCredentials: true }
         );

@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
@@ -33,6 +34,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
+// app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});
@@ -63,6 +65,14 @@ app.get("/allOrders", async (req, res) => {
 });
 
 app.use("/", authRoute);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log("App started!");

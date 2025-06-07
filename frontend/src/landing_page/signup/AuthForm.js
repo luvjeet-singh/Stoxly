@@ -29,7 +29,7 @@ const AuthForm = () => {
         if (!cookies.token) return;
 
         const { data } = await axios.post(
-          `${backendURL}/`,
+          `${backendURL}/verify`,
           {},
           { withCredentials: true }
         );

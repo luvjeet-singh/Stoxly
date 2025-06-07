@@ -3,7 +3,7 @@ const { userVerification } = require("../middlewares/AuthMiddleware");
 const router = require("express").Router();
 
 // userVerification is a route handler for POST /, not a middleware in the chain.
-router.post("/", userVerification);
+router.post("/verify", userVerification);
 
 router.post("/signup", Signup);
 router.post("/login", Login);
