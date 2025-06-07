@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
@@ -66,12 +67,21 @@ app.get("/allOrders", async (req, res) => {
 
 app.use("/", authRoute);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "build")));
+const isProduction =
+  process.env.NODE_ENV === "production" || process.env.RENDER === "true";
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  });
+if (isProduction) {
+  const buildPath = path.join(__dirname, "build");
+
+  if (fs.existsSync(path.join(buildPath, "index.html"))) {
+    app.use(express.static(buildPath));
+
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(buildPath, "index.html"));
+    });
+  } else {
+    console.warn(" Build folder not found — skipping static frontend serving.");
+  }
 }
 
 app.listen(PORT, () => {
