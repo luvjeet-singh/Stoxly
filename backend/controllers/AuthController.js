@@ -15,6 +15,7 @@ module.exports.Signup = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false,
     });
+    console.log(res.getHeaders());
     res.status(201).json({
       message: `Hi ${user.username}, you’re now logged in`,
       success: true,
@@ -45,6 +46,7 @@ module.exports.Login = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false,
     });
+    console.log(res.getHeaders());
     res.status(201).json({
       message: `Welcome back, ${user.username}`,
       success: true,
