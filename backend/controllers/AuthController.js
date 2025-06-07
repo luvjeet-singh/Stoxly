@@ -13,10 +13,9 @@ module.exports.Signup = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "None",
-      domain: "onrender.com", // ✅ see notes below
-      path: "/",
+      domain: ".onrender.com",
     });
     console.log(res.getHeaders());
     res.status(201).json({
@@ -47,10 +46,9 @@ module.exports.Login = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "None",
-      domain: "onrender.com", // ✅ see notes below
-      path: "/",
+      domain: ".onrender.com",
     });
     console.log(res.getHeaders());
     res.status(201).json({
