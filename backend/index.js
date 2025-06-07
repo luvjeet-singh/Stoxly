@@ -19,13 +19,14 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://stoxly.onrender.com/",
-      "http://localhost:3001/",
-      "https://stoxly-dashboard.onrender.com/",
-      "http://localhost:3000/",
+      "https://stoxly.onrender.com",
+      "http://localhost:3001",
+      "https://stoxly-dashboard.onrender.com",
+      "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    exposedHeaders: ["Set-Cookie"],
   })
 );
 
