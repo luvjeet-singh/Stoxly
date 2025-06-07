@@ -33,7 +33,9 @@ const Dashboard = () => {
         );
 
         if (!res.data.status) {
-          window.location.href = redirectURL;
+          setTimeout(() => {
+            window.location.href = redirectURL;
+          }, 1000); // allow cookie to persist
         } else {
           setUser(res.data.user);
         }
