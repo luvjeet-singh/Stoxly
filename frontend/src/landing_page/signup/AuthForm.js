@@ -10,7 +10,7 @@ import ModeToggle from "./ModeToggle";
 const AuthForm = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState("signup");
-  const [cookies, removeCookie] = useCookies([]);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const isSignup = mode === "signup";
 
   const backendURL =
@@ -80,10 +80,18 @@ const AuthForm = () => {
           withCredentials: true,
         });
 
-        const { success, message } = data;
+        const { success, message, token } = data;
 
-        if (success) {
+        if (success && token) {
           resetForm();
+
+          setCookie("token", token, {
+            path: "/",
+            secure: true,
+            sameSite: "None",
+          });
+
+          // Redirect to dashboard
           window.location.href = dashboardURL;
         } else {
           if (message === "User already exists") {

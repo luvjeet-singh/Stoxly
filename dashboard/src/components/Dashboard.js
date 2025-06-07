@@ -33,16 +33,12 @@ const Dashboard = () => {
         );
 
         if (!res.data.status) {
-          setTimeout(() => {
-            window.location.href = redirectURL;
-          }, 1000); // allow cookie to persist
+          window.location.href = redirectURL;
         } else {
           setUser(res.data.user);
         }
       } catch (err) {
-        setTimeout(() => {
-          window.location.href = redirectURL;
-        }, 1000);
+        window.location.href = redirectURL;
       }
     };
 

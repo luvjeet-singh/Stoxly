@@ -20,6 +20,7 @@ module.exports.Signup = async (req, res, next) => {
     res.status(201).json({
       message: `Hi ${user.username}, you’re now logged in`,
       success: true,
+      token,
       user,
     });
     next();
@@ -52,6 +53,7 @@ module.exports.Login = async (req, res, next) => {
     res.status(201).json({
       message: `Welcome back, ${user.username}`,
       success: true,
+      token,
       user: user.username,
     });
     next();
