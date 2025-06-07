@@ -34,8 +34,8 @@ app.use(
 );
 
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/allHoldings", async (req, res) => {
