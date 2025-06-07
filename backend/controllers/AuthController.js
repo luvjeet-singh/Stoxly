@@ -14,7 +14,8 @@ module.exports.Signup = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      sameSite: "none",
+      domain: "axz.onrender.com",
     });
     console.log(res.getHeaders());
     res.status(201).json({
@@ -46,7 +47,8 @@ module.exports.Login = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      sameSite: "none",
+      domain: "axz.onrender.com",
     });
     console.log(res.getHeaders());
     res.status(201).json({
