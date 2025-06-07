@@ -67,21 +67,12 @@ app.get("/allOrders", async (req, res) => {
 
 app.use("/", authRoute);
 
-const isProduction =
-  process.env.NODE_ENV === "production" || process.env.RENDER === "true";
-
-if (isProduction) {
-  const buildPath = path.join(__dirname, "build");
-
-  if (fs.existsSync(path.join(buildPath, "index.html"))) {
-    app.use(express.static(buildPath));
-
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(buildPath, "index.html"));
-    });
-  } else {
-    console.warn(" Build folder not found — skipping static frontend serving.");
-  }
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+  app.use(express.static(path.join(__dirname, "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
 }
 
 app.listen(PORT, () => {
