@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     const redirectURL =
       process.env.NODE_ENV === "production"
-        ? "https://stoxly.onrender.com"
+        ? "https://stoxly-backend.onrender.com"
         : "http://localhost:3001";
 
     const verifyToken = async () => {

@@ -22,6 +22,7 @@ app.use(
   cors({
     origin: [
       "https://stoxly.onrender.com",
+      "https://stoxly-backend.onrender.com",
       "http://localhost:3001",
       "https://stoxly-dashboard.onrender.com",
       "http://localhost:3000",
