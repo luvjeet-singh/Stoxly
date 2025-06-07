@@ -40,7 +40,9 @@ const Dashboard = () => {
           setUser(res.data.user);
         }
       } catch (err) {
-        window.location.href = redirectURL;
+        setTimeout(() => {
+          window.location.href = redirectURL;
+        }, 1000);
       }
     };
 
