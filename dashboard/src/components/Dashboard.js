@@ -16,12 +16,12 @@ const Dashboard = () => {
   useEffect(() => {
     const backendURL =
       process.env.NODE_ENV === "production"
-        ? "https://stoxly-production.up.railway.app"
+        ? "https://stoxly-backend.onrender.com"
         : "http://localhost:3002";
 
     const redirectURL =
       process.env.NODE_ENV === "production"
-        ? "https://main.dijpxhq9vdeby.amplifyapp.com"
+        ? "https://stoxly.onrender.com"
         : "http://localhost:3001";
 
     const verifyToken = async () => {

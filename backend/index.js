@@ -21,12 +21,12 @@ const app = express();
 app.use(
   cors({
     origin: [
-      // "https://stoxly.onrender.com",
+      "https://stoxly.onrender.com",
       // "https://stoxly-backend.onrender.com",
-      "https://main.dijpxhq9vdeby.amplifyapp.com",
-      "https://main.d3dm915kte212h.amplifyapp.com",
+      // "https://main.dijpxhq9vdeby.amplifyapp.com",
+      // "https://main.d3dm915kte212h.amplifyapp.com",
       "http://localhost:3001",
-      // "https://stoxly-dashboard.onrender.com",
+      "https://stoxly-dashboard.onrender.com",
       "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],

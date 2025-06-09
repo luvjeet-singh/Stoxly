@@ -15,12 +15,12 @@ const AuthForm = () => {
 
   const backendURL =
     process.env.NODE_ENV === "production"
-      ? "https://stoxly-production.up.railway.app"
+      ? "https://stoxly-backend.onrender.com"
       : "http://localhost:3002";
 
   const dashboardURL =
     process.env.NODE_ENV === "production"
-      ? "https://main.d3dm915kte212h.amplifyapp.com"
+      ? "https://stoxly-dashboard.onrender.com"
       : "http://localhost:3000";
 
   useEffect(() => {
