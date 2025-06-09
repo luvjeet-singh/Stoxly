@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     const redirectURL =
       process.env.NODE_ENV === "production"
-        ? "https://main.dijpxhq9vdeby.amplifyapp.com"
+        ? "https://main.dijpxhq9vdeby.amplifyapp.com/"
         : "http://localhost:3001";
 
     const verifyToken = async () => {
