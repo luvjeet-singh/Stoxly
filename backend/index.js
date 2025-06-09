@@ -33,10 +33,9 @@ app.use(
   })
 );
 
-app.use(bodyParser.json());
-app.use(express.json());
+// app.use(bodyParser.json());
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "build")));
+app.use(express.json());
 
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});
