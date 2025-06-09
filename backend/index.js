@@ -30,6 +30,7 @@ app.use(
       "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
+    headers: ["Content-Type"],
     credentials: true,
     exposedHeaders: ["Set-Cookie"],
   })
@@ -77,8 +78,14 @@ app.use("/", authRoute);
 //   });
 // }
 
-app.listen(PORT, () => {
-  console.log("App started!");
-  mongoose.connect(uri);
-  console.log("DB connected.");
-});
+mongoose
+  .connect(uri)
+  .then(() => {
+    console.log("DB connected.");
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to DB:", err);
+  });
