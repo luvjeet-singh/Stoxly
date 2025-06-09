@@ -27,7 +27,7 @@ export const GeneralContextProvider = (props) => {
 
     const redirectURL =
       process.env.NODE_ENV === "production"
-        ? "https://main.dijpxhq9vdeby.amplifyapp.com"
+        ? "https://stoxly.onrender.com"
         : "http://localhost:3001";
 
     try {

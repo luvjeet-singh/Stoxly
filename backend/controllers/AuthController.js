@@ -15,7 +15,7 @@ module.exports.Signup = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: isProd,
-      sameSite: isProd ? "None" : "Lax",
+      sameSite: isProd ? "Strict" : "Lax",
     });
     console.log(res.getHeaders());
     res.status(201).json({
@@ -48,7 +48,7 @@ module.exports.Login = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: isProd,
-      sameSite: isProd ? "None" : "Lax",
+      sameSite: isProd ? "Strict" : "Lax",
     });
     console.log(res.getHeaders());
     res.status(201).json({
