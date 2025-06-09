@@ -16,7 +16,7 @@ const Dashboard = () => {
   useEffect(() => {
     const backendURL =
       process.env.NODE_ENV === "production"
-        ? "https://stoxly-backend.onrender.com"
+        ? "https://stoxly-production.up.railway.app"
         : "http://localhost:3002";
 
     const redirectURL =
