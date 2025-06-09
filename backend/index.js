@@ -30,11 +30,12 @@ app.use(
       "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    headers: ["Content-Type"],
     credentials: true,
     exposedHeaders: ["Set-Cookie"],
   })
 );
+
+app.options("*", cors());
 
 // app.use(bodyParser.json());
 app.use(cookieParser());
