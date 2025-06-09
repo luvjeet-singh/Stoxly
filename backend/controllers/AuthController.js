@@ -3,6 +3,7 @@ const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 
 module.exports.Signup = async (req, res, next) => {
+  const isProd = process.env.NODE_ENV === "production";
   try {
     const { email, password, username, createdAt } = req.body;
     const existingUser = await User.findOne({ email });
@@ -12,8 +13,9 @@ module.exports.Signup = async (req, res, next) => {
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
     });
     console.log(res.getHeaders());
     res.status(201).json({
@@ -28,6 +30,7 @@ module.exports.Signup = async (req, res, next) => {
 };
 
 module.exports.Login = async (req, res, next) => {
+  const isProd = process.env.NODE_ENV === "production";
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -43,8 +46,9 @@ module.exports.Login = async (req, res, next) => {
     }
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
     });
     console.log(res.getHeaders());
     res.status(201).json({
