@@ -20,7 +20,7 @@ const AuthForm = () => {
 
   const dashboardURL =
     process.env.NODE_ENV === "production"
-      ? "https://main.d3dm915kte212h.amplifyapp.com/"
+      ? "https://main.d3dm915kte212h.amplifyapp.com"
       : "http://localhost:3000";
 
   useEffect(() => {
