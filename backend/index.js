@@ -69,13 +69,13 @@ app.get("/allOrders", async (req, res) => {
 
 app.use("/", authRoute);
 
-if (process.env.NODE_ENV === "production") {
-  const path = require("path");
-  app.use(express.static(path.join(__dirname, "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   const path = require("path");
+//   app.use(express.static(path.join(__dirname, "build")));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "build", "index.html"));
+//   });
+// }
 
 app.listen(PORT, () => {
   console.log("App started!");
