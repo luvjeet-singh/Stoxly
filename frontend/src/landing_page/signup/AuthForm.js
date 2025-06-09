@@ -20,7 +20,7 @@ const AuthForm = () => {
 
   const dashboardURL =
     process.env.NODE_ENV === "production"
-      ? "https://stoxly-dashboard.onrender.com"
+      ? "https://stoxly-backend.onrender.com"
       : "http://localhost:3000";
 
   useEffect(() => {
