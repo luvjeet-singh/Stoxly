@@ -14,8 +14,8 @@ module.exports.Signup = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: isProd,
-      sameSite: isProd ? "None" : "Lax",
+      secure: false,
+      sameSite: isProd ? "Lax" : "Lax",
     });
     console.log(res.getHeaders());
     res.status(201).json({
@@ -47,8 +47,8 @@ module.exports.Login = async (req, res, next) => {
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: isProd,
-      sameSite: isProd ? "None" : "Lax",
+      secure: false,
+      sameSite: isProd ? "Lax" : "Lax",
     });
     console.log(res.getHeaders());
     res.status(201).json({
