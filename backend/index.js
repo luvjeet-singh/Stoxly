@@ -2,10 +2,8 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
 
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
@@ -36,8 +34,6 @@ app.use(
 );
 
 app.options("*", cors());
-
-// app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
 
@@ -70,14 +66,6 @@ app.get("/allOrders", async (req, res) => {
 });
 
 app.use("/", authRoute);
-
-// if (process.env.NODE_ENV === "production") {
-//   const path = require("path");
-//   app.use(express.static(path.join(__dirname, "build")));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-//   });
-// }
 
 mongoose
   .connect(uri)
