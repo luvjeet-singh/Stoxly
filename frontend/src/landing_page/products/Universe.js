@@ -54,7 +54,7 @@ function Universe() {
           </p>
         </div>
         <div className="col-4 p-3">
-          <img src="media/images/smallCaseLogo.png" />
+          <img src="media/images/smallcaseLogo.png" />
           <p className="universe-text text-muted p-3 fw-semibold">
             Thematic investing platform
             <br />
